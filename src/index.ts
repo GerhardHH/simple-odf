@@ -15,10 +15,16 @@ export { IImageStyle } from "./style/IImageStyle";
 export { ImageStyle } from "./style/ImageStyle";
 export { IParagraphStyle } from "./style/IParagraphStyle";
 export { ParagraphStyle } from "./style/ParagraphStyle";
+export { TableStyle } from './style/TableStyle';
+export { TableColStyle } from './style/TableColStyle';
+export { TableCellStyle } from './style/TableCellStyle';
 export { TabStop } from "./style/TabStop";
 export { TabStopType } from "./style/TabStopType";
 export { TextTransformation } from "./style/TextTransformation";
 export { Typeface } from "./style/Typeface";
+export { VerticalAlignment } from './style/VerticalAlignment';
+export { TableAlignment } from './style/TableAlignment';
+export { DirectionType } from './style/DirectionType';
 
 // text
 export { Heading } from "./text/Heading";

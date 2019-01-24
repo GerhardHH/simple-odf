@@ -12,6 +12,8 @@ import { TextElementName } from "./TextElementName";
  */
 export class Paragraph extends OdfElement {
   private style: IParagraphStyle | undefined;
+  // can be set to achieve a default style for paragraphs
+  static defaultStyle?: IParagraphStyle;
 
   /**
    * Creates a paragraph
@@ -21,7 +23,10 @@ export class Paragraph extends OdfElement {
    */
   public constructor(text?: string) {
     super();
-
+    if (this.constructor.name === 'Paragraph' && Paragraph.defaultStyle) {
+      // avoid setting default style for subclasses like Heading!
+      this.style = Paragraph.defaultStyle;
+    }
     this.addText(text || "");
   }
 

@@ -73,9 +73,19 @@ export class Image extends OdfElement {
     const binaryData = document.createElement(OdfElementName.OfficeBinaryData);
     image.appendChild(binaryData);
 
-    const rawImage = readFileSync(this.path);
-    const base64Image = rawImage.toString(ENCODING);
-    const textNode = document.createTextNode(base64Image);
+    // if this.path begins with "data:image", interpret as a base64 image string!
+    var textNode;
+    if (this.path.startsWith('data:image')) {
+      // as it shows, the text node must consist of the raw data without
+      // data:image/png;base64, header. So we remove all up to the first comma
+      var pos = this.path.indexOf(',');
+      var data = this.path.substr(pos+1);
+      textNode = document.createTextNode(data);
+    } else {
+      const rawImage = readFileSync(this.path);
+      const base64Image = rawImage.toString(ENCODING);
+      textNode = document.createTextNode(base64Image);
+    }
     binaryData.appendChild(textNode);
   }
 }

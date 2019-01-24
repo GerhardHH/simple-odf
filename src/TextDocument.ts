@@ -9,6 +9,7 @@ import { OdfElementName } from "./OdfElementName";
 import { FontPitch } from "./style/FontPitch";
 import { Heading } from "./text/Heading";
 import { List } from "./text/List";
+import { Table } from './text/Table';
 import { Paragraph } from "./text/Paragraph";
 
 export const XML_DECLARATION = '<?xml version="1.0" encoding="UTF-8"?>\n';
@@ -95,6 +96,20 @@ export class TextDocument extends OdfElement {
   }
 
   /**
+   * Adds an empty table with the given number of columns
+   *
+   * @param {number} numCols The number of columns
+   * @returns {Table} The newly added table
+   * @since 0.7.0
+   */
+  public addTable(numCols:number): Table {
+    const tbl = new Table(numCols);
+    this.append(tbl);
+
+    return tbl;
+  }
+
+  /**
    * Adds a paragraph at the end of the document.
    * If a text is given, this will be set as text content of the paragraph.
    *
@@ -175,6 +190,9 @@ export class TextDocument extends OdfElement {
     root.setAttribute("xmlns:meta", "urn:oasis:names:tc:opendocument:xmlns:meta:1.0");
     root.setAttribute("xmlns:style", "urn:oasis:names:tc:opendocument:xmlns:style:1.0");
     root.setAttribute("xmlns:svg", "urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0");
+    root.setAttribute("xmlns:table", "urn:oasis:names:tc:opendocument:xmlns:table:1.0");
+    root.setAttribute("xmlns:tableooo", "http://openoffice.org/2009/table");
+    root.setAttribute("xmlns:officeooo", "http://openoffice.org/2009/office");
     root.setAttribute("xmlns:text", "urn:oasis:names:tc:opendocument:xmlns:text:1.0");
     root.setAttribute("xmlns:xlink", "http://www.w3.org/1999/xlink");
   }
