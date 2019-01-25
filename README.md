@@ -1,4 +1,4 @@
-# simple-odf 
+# simple-odf
 
 Open Document Format made easy using pure JavaScript and Node.js
 
@@ -6,6 +6,19 @@ Open Document Format made easy using pure JavaScript and Node.js
 [![Dependencies](https://david-dm.org/connium/simple-odf.svg)](https://david-dm.org/connium/simple-odf)
 [![Known Vulnerabilities](https://snyk.io/test/github/connium/simple-odf/badge.svg)](https://snyk.io/test/github/connium/simple-odf)
 [![Version](https://img.shields.io/npm/v/simple-odf.svg)](https://www.npmjs.com/package/simple-odf)
+
+## Note on this fork (GerhardHH/simple-odf)
+
+I created this fork because I needed to create documents on the server of an application built with Meteor, React and antd.
+
+I did not find a smarter solution to the problem than simple-odf, but it lacked the ability to create tables. So I forked and added table handling, please note that this version is not available via npm.
+
+Once testing has been done, I will create a pull request to the parent (connium/simple-odf) to fix that. In the meantime, users may clone my repostiory, run tsc on the root and integrate the result via:
+
+```
+npm install --save /path/to/simple-odf
+```
+This setting works perfectly for my setup so it should work in most cases.
 
 ## Getting Started
 
