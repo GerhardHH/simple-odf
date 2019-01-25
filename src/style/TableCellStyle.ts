@@ -21,9 +21,13 @@ export class TableCellStyle implements ITableCellStyle {
   * constructor - standard is use optimal width
   */
   constructor() {
-    this.vAlign = VerticalAlignment.auto;
-    this.border = TableCellStyle.defaultBorder || {};
-    this.padding = TableCellStyle.defaultPadding || {};
+    this.vAlign = VerticalAlignment.top;
+    this.border = {
+      ...TableCellStyle.defaultBorder
+    };
+    this.padding = {
+      ...TableCellStyle.defaultPadding
+    };
   }
   /** @inheritDoc */
   setVerticalAlignment(align:VerticalAlignment): void {
@@ -49,6 +53,8 @@ export class TableCellStyle implements ITableCellStyle {
   /** @inheritDoc */
   public toXml(document: Document, parent: Element): void {
     const styleName = this.getName();
+    console.log('Style name is ' + styleName + ' for');
+    console.log(this);
     parent.setAttribute(OdfAttributeName.TableStyleName, styleName);
     if (this.existsStyle(document, styleName) === true) {
       return;
@@ -68,11 +74,11 @@ export class TableCellStyle implements ITableCellStyle {
     const hash = createHash("md5");
     // update hash with _self's properties
     hash.update(this.vAlign);
-    for (var str in this.border) {
-      hash.update(str);
+    for (var key in this.border) {
+      hash.update(this.border[key]);
     }
-    for (var str in this.padding) {
-      hash.update(str);
+    for (var key in this.padding) {
+      hash.update(this.padding[key]);
     }
     return hash.digest("hex");
   }
