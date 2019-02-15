@@ -139,6 +139,32 @@ export class TextDocument extends OdfElement {
   }
 
   /**
+   * Saves the document in flat open document xml format, pretty printed
+   *
+   * @param {string} filePath The file path to write to
+   * @returns {Promise<void>}
+   * @since 0.1.0
+   */
+  public saveFlatPretty(filePath: string): Promise<void> {
+    const writeFileAsync = promisify(writeFile);
+    const xml = this.toString();
+
+    return writeFileAsync(filePath, this.prettifyXml(xml));
+  }
+
+  private prettifyXml(xml: string): string
+  {
+    var formatted = '', indent= '';
+    var tab = '\t';
+    xml.split(/>\s*</).forEach(function(node) {
+        if (node.match( /^\/\w/ )) indent = indent.substring(tab.length); // decrease indent by one 'tab'
+        formatted += indent + '<' + node + '>\r\n';
+        if (node.match( /^<?\w[^>]*[^\/]$/ )) indent += tab;              // increase indent
+    });
+    return formatted.substring(1, formatted.length-3);
+  }
+
+  /**
    * Returns the string representation of this document in flat open document xml format.
    *
    * @returns {string} The string representation of this document
