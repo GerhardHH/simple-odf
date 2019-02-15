@@ -24,10 +24,12 @@ export class TableColStyle implements ITableColStyle {
   /** @inheritDoc */
   setWidthString(width: string): void {
     this.widthAbs = width;
+    this.widthUseOptimal = false;
   }
   /** @inheritDoc */
-  seRelativetWidth(width: number): void {
+  setRelativeWidth(width: number): void {
     this.widthRel = width;
+    this.widthUseOptimal = false;
   }
   /** @inheritDoc */
   setUseOptimalWidth(useOptimal: boolean): void {

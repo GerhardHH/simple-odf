@@ -36,7 +36,7 @@ export interface ITableColStyle {
    *
    * @since 0.7.0
    */
-  seRelativetWidth(width:number): void;
+  setRelativeWidth(width:number): void;
 
   /**
    * Sets flag to use optimal column width (the default)

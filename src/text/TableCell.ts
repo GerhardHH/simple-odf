@@ -26,10 +26,13 @@ export class TableCell extends OdfElement {
     var paragraph;
     if (content instanceof Paragraph) {
       paragraph = content;
-    } else {
+    } else if (content) {
       paragraph = new Paragraph(content);
     }
-    this.append(paragraph);
+    // only add the first paragraph is provided
+    if (paragraph) {
+      this.append(paragraph);
+    }
     this.style = new TableCellStyle();
   }
   /**

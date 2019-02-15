@@ -11,7 +11,7 @@ import { TableRow } from './TableRow';
  * @since 0.7.0
  */
 export class Table extends OdfElement {
-  private colDefs: TableColDef[];
+  public colDefs: TableColDef[];
   /**
    * Creates a table with a given number of columns
    *

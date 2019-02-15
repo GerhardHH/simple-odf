@@ -18,7 +18,8 @@ export class TableCellStyle implements ITableCellStyle {
   static defaultBorder: any;
   static defaultPadding: any;
   /**
-  * constructor - standard is use optimal width
+  constructor - standard values are used for border and padding.
+  Default is vertical alignment at the top.
   */
   constructor() {
     this.vAlign = VerticalAlignment.top;
@@ -53,8 +54,8 @@ export class TableCellStyle implements ITableCellStyle {
   /** @inheritDoc */
   public toXml(document: Document, parent: Element): void {
     const styleName = this.getName();
-    console.log('Style name is ' + styleName + ' for');
-    console.log(this);
+    // console.log('Style name is ' + styleName + ' for');
+    // console.log(this);
     parent.setAttribute(OdfAttributeName.TableStyleName, styleName);
     if (this.existsStyle(document, styleName) === true) {
       return;
