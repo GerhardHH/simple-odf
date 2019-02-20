@@ -34,6 +34,7 @@ export class TableCell extends OdfElement {
       this.append(paragraph);
     }
     this.style = new TableCellStyle();
+    // console.log('Add cell (' + content + ') pad=' + this.style.getPadding().left);
   }
   /**
   * Return the TableCellStyle associated with this

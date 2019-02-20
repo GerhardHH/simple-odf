@@ -50,12 +50,15 @@ export class TableCellStyle implements ITableCellStyle {
   resetPadding(): void {
     this.padding = {};
   }
+  getPadding() {
+    return this.padding;
+  }
 
   /** @inheritDoc */
   public toXml(document: Document, parent: Element): void {
     const styleName = this.getName();
     // console.log('Style name is ' + styleName + ' for');
-    // console.log(this);
+    // console.log(this.padding);
     parent.setAttribute(OdfAttributeName.TableStyleName, styleName);
     if (this.existsStyle(document, styleName) === true) {
       return;
